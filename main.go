@@ -64,54 +64,24 @@ func calculate(s string) (int, error) {
 
 		var a, b int
 
+		a, stack, err = pop(stack)
+		if err != nil {
+			return 0, err
+		}
+
+		b, stack, err = pop(stack)
+		if err != nil {
+			return 0, err
+		}
+
 		switch j {
 		case "+":
-			a, stack, err = pop(stack)
-			if err != nil {
-				return 0, err
-			}
-
-			b, stack, err = pop(stack)
-			if err != nil {
-				return 0, err
-			}
-
 			stack = append(stack, a+b)
 		case "-":
-			a, stack, err = pop(stack)
-			if err != nil {
-				return 0, err
-			}
-
-			b, stack, err = pop(stack)
-			if err != nil {
-				return 0, err
-			}
-
 			stack = append(stack, b-a)
 		case "*":
-			a, stack, err = pop(stack)
-			if err != nil {
-				return 0, err
-			}
-
-			b, stack, err = pop(stack)
-			if err != nil {
-				return 0, err
-			}
-
 			stack = append(stack, a*b)
 		case "/":
-			a, stack, err = pop(stack)
-			if err != nil {
-				return 0, err
-			}
-
-			b, stack, err = pop(stack)
-			if err != nil {
-				return 0, err
-			}
-
 			stack = append(stack, b/a)
 		default:
 			return 0, fmt.Errorf("Syntax error: %s", j)
